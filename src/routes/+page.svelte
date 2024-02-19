@@ -1,19 +1,24 @@
 <script lang="ts">
+	import Metadata from '$lib/components/Metadata.svelte';
+	import PokemonTile from '$lib/components/PokemonTile.svelte';
 	import { page } from '$app/stores';
+
+	const pokemons = $page.data.pokemon;
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
+<Metadata title="Home" description="Pokémon API" />
 
 <section>
-	{#each $page.data.pokemon as name}
-		<li>
-			<a href="/pokemon/{name}">{name}</a>
-		</li>
+	{#each pokemons as pokemon}
+		<PokemonTile name={pokemon.name} id={pokemon.id} />
 	{/each}
 </section>
 
 <style>
+	section {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		gap: 1rem;
+	}
 </style>

@@ -1,6 +1,11 @@
 import { z } from 'zod';
 
-export async function listPokemon(page = 0): Promise<string[]> {
+export type BasicPokemonInfo = {
+	id: number;
+	name: string;
+};
+
+export async function listPokemon(page = 0): Promise<BasicPokemonInfo[]> {
 	const PokemonSchema = z.object({
 		name: z.string(),
 		url: z.string()
@@ -14,7 +19,24 @@ export async function listPokemon(page = 0): Promise<string[]> {
 	const r = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${LIMIT}`);
 	const json = await r.json();
 	const data = ResponseSchema.parse(json);
-	return data.results.map((entry) => entry.name);
+	return data.results.map((entry) => ({
+		id: extractIdFromUrl(entry.url),
+		name: entry.name,
+	}));
+}
+
+function extractIdFromUrl(url: string): number {
+	const regex = /https:\/\/pokeapi.co\/api\/v2\/pokemon\/(\d+)/
+	const matches = url.match(regex);
+	if (matches?.length !== 2) {
+		throw new Error(`Invalid URL: ${url}`);
+	}
+
+	return parseInt(matches[1]);
+}
+
+export function generateImageUrl(id: number): string {
+	return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 }
 
 // * Allow the user to view a list of pokemon (extra points for using pagination).
