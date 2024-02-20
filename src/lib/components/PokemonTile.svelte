@@ -1,14 +1,21 @@
 <script lang="ts">
-	import { generateImageUrl } from '$lib/pokemon/index.js';
+	import { generateImageFromId } from '$lib/pokemon/index.js';
 	export let name: string;
 	export let id: number;
+
+	const image = generateImageFromId(id);
 </script>
 
 <a href="/pokemon/{name}" style="display: contents;">
 	<div>
 		<h1>{name}</h1>
 		<h2>#{String(id).padStart(4, '0')}</h2>
-		<img src={generateImageUrl(id)} alt={name} />
+		<img
+			src={image.url}
+			height={image.height}
+			width={image.width}
+			alt={name}
+		/>
 	</div>
 </a>
 

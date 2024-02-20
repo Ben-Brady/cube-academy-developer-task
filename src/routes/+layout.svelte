@@ -20,6 +20,9 @@
 	}
 
 	main {
+		display: flex;
+		align-items: center;
+		flex-flow: column;
 		padding: 1rem 10vw;
 	}
 
