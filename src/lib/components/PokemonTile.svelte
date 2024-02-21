@@ -2,7 +2,7 @@
 	import { type BasicPokemonInfo } from '$lib/pokemon/index.js';
 	export let pokemon: BasicPokemonInfo;
 
-	const { name, id, image } = info;
+	const { name, id, image } = pokemon;
 
 	const paddedId = String(id).padStart(4, '0')
 </script>
