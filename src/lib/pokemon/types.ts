@@ -1,14 +1,14 @@
 import { z } from "zod";
 
 export const spritesSchema = z.object({
-  front_default: z.nullable(z.string()),
-  front_female: z.nullable(z.string()),
-  front_shiny: z.nullable(z.string()),
-  front_shiny_female: z.nullable(z.string()),
-  back_default: z.nullable(z.string()),
-  back_female: z.nullable(z.string()),
-  back_shiny: z.nullable(z.string()),
-  back_shiny_female: z.nullable(z.string()),
+  front_default: z.string().nullable(),
+  front_female: z.string().nullable(),
+  front_shiny: z.string().nullable(),
+  front_shiny_female: z.string().nullable(),
+  back_default: z.string().nullable(),
+  back_female: z.string().nullable(),
+  back_shiny: z.string().nullable(),
+  back_shiny_female: z.string().nullable(),
 })
 
 export const formSchema = z.object({
@@ -34,7 +34,7 @@ export const versionSpecificDetailsSchema = z.object({
 
 export const heldItemSchema = z.object({
 	item: formSchema,
-	version_details: z.nullable(z.array(versionSpecificDetailsSchema))
+	version_details: z.array(versionSpecificDetailsSchema).nullable()
 });
 
 export const moveSchema = z.object({
