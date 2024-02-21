@@ -30,7 +30,7 @@
 		justify-content: center;
 		flex-flow: column;
 
-		background: grey;
+		background: var(--primary);
 		padding: 1rem;
 	}
 

@@ -1,32 +1,45 @@
 <script>
 	import './styles.css';
 	import './reset.css';
+	import PokemonImg from '$lib/images/pokeapi.png';
 </script>
 
 <div>
 	<nav>
-		<a href="/">Home</a>
+		<a href="/" style="display: contents;">
+			<img src={PokemonImg} alt="PokeAPI" />
+		</a>
 	</nav>
 	<main>
 		<slot />
 	</main>
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
-	}
 
-	main {
-		display: flex;
-		align-items: center;
-		flex-flow: column;
-		padding: 1rem 10vw;
-	}
+		nav {
+			display: flex;
 
-	nav {
-		width: 100%;
+			width: 100%;
+			height: 3rem;
+			border: 0 solid black;
+			border-bottom-width: 1px;
+			background: var(--accent);
+
+			img {
+				height: 100%;
+			}
+		}
+
+		main {
+			display: flex;
+			align-items: center;
+			flex-flow: column;
+			padding: 1rem 10vw;
+		}
 	}
 </style>
