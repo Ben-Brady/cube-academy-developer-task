@@ -2,18 +2,23 @@
 	import './styles.css';
 	import './reset.css';
 	import PokemonImg from '$lib/images/pokeapi.png';
+	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query'
+
+	const queryClient = new QueryClient()
 </script>
 
-<div>
-	<nav>
-		<a href="/" style="display: contents;">
-			<img src={PokemonImg} alt="PokeAPI" />
-		</a>
-	</nav>
-	<main>
-		<slot />
-	</main>
-</div>
+<QueryClientProvider client={queryClient}>
+	<div>
+		<nav>
+			<a href="/" style="display: contents;">
+				<img src={PokemonImg} alt="PokeAPI" />
+			</a>
+		</nav>
+		<main>
+			<slot />
+		</main>
+	</div>
+</QueryClientProvider>
 
 <style lang="scss">
 	div {
