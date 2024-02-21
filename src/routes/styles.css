@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Seymour%20One:700|Seymour%20One:400');
 
 :root {
-	--text: #030819;
-	--background: #fafbfe;
-	--primary: #2d6aea;
-	--secondary: #a080f2;
-	--accent: #934fed;
+	--text: hsl(226, 79%, 5%);
+	--background: hsl(225, 67%, 99%);
+	--primary: hsl(221, 82%, 55%);
+	--secondary: hsl(257, 81%, 73%);
+	--accent: hsl(266, 81%, 62%);
 	color: var(--color-text);
 }
 
