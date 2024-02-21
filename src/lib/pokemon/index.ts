@@ -1,4 +1,6 @@
 export { listPokemonPaginated, type BasicPokemonInfo } from './search.js';
+export { getPokemon } from './get.js';
+export type * from './types.js';
 
 
 // * Allow the user to view a list of pokemon (extra points for using pagination).
