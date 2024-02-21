@@ -24,12 +24,12 @@
 
 <div id="scroll">
 	{#each pokemons as pokemon}
-		<PokemonTile name={pokemon.name} id={pokemon.id} />
+		<PokemonTile {pokemon} />
 	{/each}
 </div>
 
 <div style="display: contents;" class:visible={!finished} id="loading-icon">
-	<SyncLoader color={"#000000"}/>
+	<SyncLoader color={'#000000'} />
 </div>
 
 <style>
