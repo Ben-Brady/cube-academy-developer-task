@@ -31,7 +31,8 @@ export async function listPokemonPaginated(offset = 0): Promise<BasicPokemonInfo
 
 	return data.results.map((entry) => ({
 		id: extractIdFromUrl(entry.url),
-		name: entry.name
+		name: entry.name,
+		image: generateImageFromId(extractIdFromUrl(entry.url))
 	}));
 }
 
