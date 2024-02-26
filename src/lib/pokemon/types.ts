@@ -88,7 +88,6 @@ export const PokemonTypePast = z.object({
 	types: PokemonTypeSchema.array().nullable()
 });
 
-
 export type PokemonForm = z.infer<typeof NamedResourceSchema>;
 export type PokemonAbility = z.infer<typeof PokemonAbilitySchema>;
 export type PokemonHeldItem = z.infer<typeof PokemonHeldItemSchema>;

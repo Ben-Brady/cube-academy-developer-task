@@ -1,11 +1,6 @@
-export {
-	allPokemon,
-	searchPokemon,
-	listPokemon,
-	createPokemonImage,
-} from './search.js';
+export { allPokemon, searchPokemon, listPokemon, createPokemonImage } from './search.js';
 export { getPokemon } from './get.js';
-export { getEvolutionChain, type EvolutionChain } from "./evolution.js"
+export { getEvolutionChain, type EvolutionChain } from './evolution.js';
 
 export type { BasicPokemonInfo } from './search.js';
 export type * from './types.js';
