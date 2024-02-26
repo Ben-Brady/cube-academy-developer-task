@@ -1,4 +1,4 @@
-export { listPokemonPaginated, type BasicPokemonInfo } from './search.js';
+export { allPokemon, searchPokemon, listPokemon, type BasicPokemonInfo } from './search.js';
 export { getPokemon } from './get.js';
 export type * from './types.js';
 

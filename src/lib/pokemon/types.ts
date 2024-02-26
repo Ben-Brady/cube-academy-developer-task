@@ -42,6 +42,11 @@ export const moveSchema = z.object({
 	// version_group_details?: VersionGroupDetailsEntity[] | null
 });
 
+export const pokemonTypeSchema = z.object({
+  slot: z.number(),
+  type: formSchema,
+})
+
 export const pokemonSchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -51,8 +56,8 @@ export const pokemonSchema = z.object({
   order: z.number(),
   weight: z.number(),
   location_area_encounters: z.string(),
-  abilities: z.array(abilitySchema),
-  held_items: z.array(heldItemSchema),
+  abilities: abilitySchema.array(),
+  held_items: heldItemSchema.array(),
   sprites: spritesSchema,
   // forms: PokemonForm[],
   // game_indices: VersionGameIndex[],
@@ -60,7 +65,7 @@ export const pokemonSchema = z.object({
   // species: PokemonForm,
   // cries: PokemonCries,
   // stats: PokemonStat[],
-  // types: PokemonTypes[],
+  types: pokemonTypeSchema.array(),
   // past_types: PokemonTypePast[],
 });
 
@@ -82,10 +87,6 @@ export const pokemonSchema = z.object({
 //   base_stat: number;
 //   effort: number;
 //   stat: PokemonForm;
-// }
-// export type PokemonTypes = {
-//   slot: number;
-//   type: PokemonForm;
 // }
 // export type PokemonTypePast  = {
 //   generation: PokemonForm;

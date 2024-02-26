@@ -2,22 +2,23 @@
 	import { SyncLoader } from 'svelte-loading-spinners';
 	import Metadata from '$lib/components/Metadata.svelte';
 	import PokemonTile from '$lib/components/PokemonTile.svelte';
-	import { listPokemonPaginated, type BasicPokemonInfo } from '$lib/pokemon/index.js';
+	import { listPokemon, type BasicPokemonInfo } from '$lib/pokemon/index.js';
 	import { onMount } from 'svelte';
 
 	let pokemons: BasicPokemonInfo[] = [];
 
 	let finished: boolean = false;
+
+	onMount(nextPage);
 	async function nextPage() {
-		const nextPage = await listPokemonPaginated(pokemons.length);
-		if (nextPage === null) {
+		const nextPage = await listPokemon(100, pokemons.length);
+		if (nextPage.length === 0) {
 			finished = true;
 			return;
 		}
 
 		pokemons = [...pokemons, ...nextPage];
 	}
-	onMount(nextPage);
 </script>
 
 <Metadata title="Home" description="Pokémon API" />
