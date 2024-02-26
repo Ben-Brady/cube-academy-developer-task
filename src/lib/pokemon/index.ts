@@ -1,9 +1,9 @@
-export { allPokemon, searchPokemon, listPokemon, createPokemonImage } from "./search.js";
-export { getPokemon } from "./get.js";
-export { getEvolutionChain, type EvolutionChain } from "./evolution.js";
+export { allPokemon, searchPokemon, listPokemon, createPokemonImage } from "./search";
+export { getPokemon } from "./get";
+export { getEvolutionChain, type EvolutionChain } from "./evolution";
 
-export type { BasicPokemonInfo } from "./search.js";
-export type * from "./types.js";
+export type { BasicPokemonInfo } from "./search";
+export type * from "./types";
 
 // * Allow the user to view a list of pokemon (extra points for using pagination).
 // * Allow the user to search that list of pokemon by the pokemon's name.

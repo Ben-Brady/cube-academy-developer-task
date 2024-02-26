@@ -1,4 +1,4 @@
-import { PokemonSchema, type Pokemon } from "./types.js";
+import { PokemonSchema, type Pokemon } from "./types";
 
 export async function getPokemon(IdOrName: string | number): Promise<Pokemon | null> {
     const r = await fetch(`https://pokeapi.co/api/v2/pokemon/${IdOrName}/`);

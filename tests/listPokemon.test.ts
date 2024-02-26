@@ -1,4 +1,4 @@
-import { listPokemon } from "../src/lib/pokemon/index.js";
+import { listPokemon } from "../src/lib/pokemon";
 
 test("Search returns results", async () => {
     const pokemon = await listPokemon(100, 0);

@@ -1,4 +1,4 @@
-import { getPokemon } from "../src/lib/pokemon/index.js";
+import { getPokemon } from "../src/lib/pokemon";
 
 test("Get Pokemon accepts ids", async () => {
     const pokemon = await getPokemon(1);

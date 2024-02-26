@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { SyncLoader } from "svelte-loading-spinners";
-	import { type Pokemon } from "$lib/pokemon/index.js";
+	import { type Pokemon } from "$lib/pokemon";
 	import PokemonType from "$lib/components/PokemonType.svelte";
 	export let pokemon: Pokemon;
 

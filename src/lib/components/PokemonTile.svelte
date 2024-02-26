@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createPokemonImage, type BasicPokemonInfo } from "$lib/pokemon/index.js";
+	import { createPokemonImage, type BasicPokemonInfo } from "$lib/pokemon";
 	export let pokemon: BasicPokemonInfo;
 
 	const { name, id } = pokemon;

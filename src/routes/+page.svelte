@@ -2,7 +2,7 @@
 	import { SyncLoader } from "svelte-loading-spinners";
 	import Metadata from "$lib/components/Metadata.svelte";
 	import PokemonTile from "$lib/components/PokemonTile.svelte";
-	import { listPokemon, allPokemon, type BasicPokemonInfo } from "$lib/pokemon/index.js";
+	import { listPokemon, allPokemon, type BasicPokemonInfo } from "$lib/pokemon";
 	import { onMount } from "svelte";
 
 	let pokemons: BasicPokemonInfo[] = [];

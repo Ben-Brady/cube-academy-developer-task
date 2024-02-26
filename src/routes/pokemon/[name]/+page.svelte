@@ -3,7 +3,7 @@
 	import { goto } from "$app/navigation";
 	import { SyncLoader } from "svelte-loading-spinners";
 	import { createQuery } from "@tanstack/svelte-query";
-	import { getPokemon } from "$lib/pokemon/index.js";
+	import { getPokemon } from "$lib/pokemon";
 	import PokemonInfo from "$lib/components/PokemonInfo.svelte";
 
 	let { name } = $page.params;
