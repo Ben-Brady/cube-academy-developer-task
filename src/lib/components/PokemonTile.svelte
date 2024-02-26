@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { type BasicPokemonInfo } from '$lib/pokemon/index.js';
+	import { createPokemonImage, type BasicPokemonInfo } from '$lib/pokemon/index.js';
 	export let pokemon: BasicPokemonInfo;
 
-	const { name, id, image } = pokemon;
+	const { name, id } = pokemon;
+	const image = createPokemonImage(id);
 
 	const paddedId = String(id).padStart(4, '0')
 </script>

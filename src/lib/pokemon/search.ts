@@ -4,7 +4,6 @@ import levenshtein from 'js-levenshtein';
 export type BasicPokemonInfo = {
 	id: number;
 	name: string;
-	image: Image;
 };
 
 type Image = {
@@ -40,20 +39,19 @@ export async function listPokemon(
 
 	const results = data.results.map((entry) => {
 		const id = extractIdFromPokemonUrl(entry.url);
-		return {
-			id,
-			name: entry.name,
-			image: {
-				url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
-				width: 475,
-				height: 475
-			}
-		};
+		return { id, name: entry.name };
 	});
 
 	return results;
 }
 
+export function createPokemonImage(id: number): Image {
+	return {
+		url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+		width: 475,
+		height: 475
+	};
+}
 function extractIdFromPokemonUrl(url: string): number {
 	const regex = /https:\/\/pokeapi.co\/api\/v2\/pokemon\/(\d+)/;
 	const matches = url.match(regex);
@@ -64,11 +62,10 @@ function extractIdFromPokemonUrl(url: string): number {
 	return parseInt(matches[1]);
 }
 
-
 /**
  * List all pokemon in the database, results are cached
  * @returns Array of every pokemon's basic info
-*/
+ */
 export async function allPokemon(): Promise<BasicPokemonInfo[]> {
 	if (allPokemonCache === null) {
 		allPokemonCache = await listPokemon(null);
@@ -99,6 +96,6 @@ export async function searchPokemon(name: string, limit: number = 5): Promise<Ba
 		})) // Match up pokemons, and their different from the search string
 		.filter((pokemon) => pokemon.distance <= DISTANCE_THRESHOLD) // Filter out pokemons that are too different
 		.sort((a, b) => a.distance - b.distance) // Sort by distance
-		.map(match => match.pokemon) // Remove distances from the array
+		.map((match) => match.pokemon) // Remove distances from the array
 		.slice(0, limit); // Slice to the limit
 }
