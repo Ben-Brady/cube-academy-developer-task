@@ -16,6 +16,7 @@
 
 		/* Colours taken from https://pokemondb.net/type */
 		background-color: #aa9;
+		text-transform: capitalize;
 
 		&[data-type='fire'] {
 			background-color: #f42;
