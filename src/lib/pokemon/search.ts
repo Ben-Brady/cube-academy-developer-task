@@ -64,7 +64,11 @@ function extractIdFromPokemonUrl(url: string): number {
 	return parseInt(matches[1]);
 }
 
-let allPokemonCache: BasicPokemonInfo[] | null = null;
+
+/**
+ * List all pokemon in the database, results are cached
+ * @returns Array of every pokemon's basic info
+*/
 export async function allPokemon(): Promise<BasicPokemonInfo[]> {
 	if (allPokemonCache === null) {
 		allPokemonCache = await listPokemon(null);
@@ -72,9 +76,18 @@ export async function allPokemon(): Promise<BasicPokemonInfo[]> {
 
 	return allPokemonCache;
 }
+// A basic cache is used to prevent repeated requests on name searches
+// Prehaps use a stored cache in localStorage if requests are too numerous
+let allPokemonCache: BasicPokemonInfo[] | null = null;
 
-export async function searchPokemon(search: string, limit: number): Promise<BasicPokemonInfo[]> {
-	if (search === '') return [];
+/**
+ * Text search for pokemon names, matches using levenshtein distance
+ * @param name The name to search for
+ * @param limit The number of results to return
+ * @returns Array of basic pokemon info, empty if no matches
+ */
+export async function searchPokemon(name: string, limit: number = 5): Promise<BasicPokemonInfo[]> {
+	if (name === '') return [];
 	const pokemons = await allPokemon();
 	if (pokemons === null) return [];
 	const DISTANCE_THRESHOLD = 10;
@@ -82,10 +95,10 @@ export async function searchPokemon(search: string, limit: number): Promise<Basi
 	return pokemons
 		.map((pokemon) => ({
 			pokemon,
-			distance: levenshtein(search, pokemon.name)
+			distance: levenshtein(name, pokemon.name) // Distance between the search string and the pokemon name
 		})) // Match up pokemons, and their different from the search string
 		.filter((pokemon) => pokemon.distance <= DISTANCE_THRESHOLD) // Filter out pokemons that are too different
 		.sort((a, b) => a.distance - b.distance) // Sort by distance
-		.map(({ pokemon }) => pokemon) // Remove distances from the array
+		.map(match => match.pokemon) // Remove distances from the array
 		.slice(0, limit); // Slice to the limit
 }
