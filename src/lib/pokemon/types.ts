@@ -7,15 +7,44 @@ export const NamedResourceSchema = z.object({
 	url: z.string()
 });
 
+export const PokemonSchema = z.object({
+	id: z.number(),
+	name: z.string(),
+	base_experience: z.number(),
+	height: z.number(),
+	is_default: z.boolean(),
+	order: z.number(),
+	weight: z.number(),
+	location_area_encounters: z.string(),
+	abilities: z.lazy(() => PokemonAbilitySchema.array()),
+	held_items: z.lazy(() => PokemonHeldItemSchema.array()),
+	species: z.lazy(() => NamedResourceSchema),
+	forms: z.lazy(() => NamedResourceSchema.array()),
+	game_indices: z.lazy(() => VersionGameIndexSchema.array()),
+	moves: z.lazy(() => PokemonMoveSchema.array()),
+	stats: z.lazy(() => PokemonStatSchema.array()),
+	types: z.lazy(() => PokemonTypeSchema.array()),
+	past_types: z.lazy(() => PokemonTypePast.array()),
+	cries: z.object({
+		latest: z.string(),
+		legacy: z.string()
+	}),
+	sprites: z.object({
+		front_default: z.string().nullable(),
+		front_female: z.string().nullable(),
+		front_shiny: z.string().nullable(),
+		front_shiny_female: z.string().nullable(),
+		back_default: z.string().nullable(),
+		back_female: z.string().nullable(),
+		back_shiny: z.string().nullable(),
+		back_shiny_female: z.string().nullable()
+	})
+});
+
 export const PokemonAbilitySchema = z.object({
 	is_hidden: z.boolean(),
 	slot: z.number(),
 	ability: NamedResourceSchema
-});
-
-export const GameVersionSchema = z.object({
-	game_index: z.number(),
-	version: NamedResourceSchema
 });
 
 export const ItemVersionDetailsSchema = z.object({
@@ -59,43 +88,9 @@ export const PokemonTypePast = z.object({
 	types: PokemonTypeSchema.array().nullable()
 });
 
-export const PokemonSchema = z.object({
-	id: z.number(),
-	name: z.string(),
-	base_experience: z.number(),
-	height: z.number(),
-	is_default: z.boolean(),
-	order: z.number(),
-	weight: z.number(),
-	location_area_encounters: z.string(),
-	abilities: PokemonAbilitySchema.array(),
-	held_items: PokemonHeldItemSchema.array(),
-	species: NamedResourceSchema,
-	forms: NamedResourceSchema.array(),
-	game_indices: VersionGameIndexSchema.array(),
-	moves: PokemonMoveSchema.array(),
-	stats: PokemonStatSchema.array(),
-	types: PokemonTypeSchema.array(),
-	past_types: PokemonTypePast.array(),
-	cries: z.object({
-		latest: z.string(),
-		legacy: z.string()
-	}),
-	sprites: z.object({
-		front_default: z.string().nullable(),
-		front_female: z.string().nullable(),
-		front_shiny: z.string().nullable(),
-		front_shiny_female: z.string().nullable(),
-		back_default: z.string().nullable(),
-		back_female: z.string().nullable(),
-		back_shiny: z.string().nullable(),
-		back_shiny_female: z.string().nullable()
-	})
-});
 
 export type PokemonForm = z.infer<typeof NamedResourceSchema>;
 export type PokemonAbility = z.infer<typeof PokemonAbilitySchema>;
-export type PokemonGameVersion = z.infer<typeof GameVersionSchema>;
 export type PokemonHeldItem = z.infer<typeof PokemonHeldItemSchema>;
 export type PokemonMove = z.infer<typeof PokemonMoveSchema>;
 export type PokemonPokemon = z.infer<typeof PokemonSchema>;
