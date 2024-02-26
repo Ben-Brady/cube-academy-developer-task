@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { createPokemonImage, type BasicPokemonInfo } from '$lib/pokemon/index.js';
+	import { createPokemonImage, type BasicPokemonInfo } from "$lib/pokemon/index.js";
 	export let pokemon: BasicPokemonInfo;
 
 	const { name, id } = pokemon;
 	const image = createPokemonImage(id);
 
-	const paddedId = String(id).padStart(4, '0');
+	const paddedId = String(id).padStart(4, "0");
 </script>
 
 <a href="/pokemon/{name}" style="display: contents;">
 	<div>
 		<h1>{name}</h1>
 		<h2>#{paddedId}</h2>
-		<img src={image.url} height={image.height} width={image.width} alt={name} />
+		<img src="{image.url}" height="{image.height}" width="{image.width}" alt="{name}" />
 	</div>
 </a>
 

@@ -1,17 +1,17 @@
 <script>
-	import './styles.css';
-	import './reset.css';
-	import PokemonAPIIcon from '$lib/images/pokeapi.png';
-	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
+	import "./styles.css";
+	import "./reset.css";
+	import PokemonAPIIcon from "$lib/images/pokeapi.png";
+	import { QueryClient, QueryClientProvider } from "@tanstack/svelte-query";
 
 	const queryClient = new QueryClient();
 </script>
 
-<QueryClientProvider client={queryClient}>
+<QueryClientProvider client="{queryClient}">
 	<div id="app">
 		<nav>
 			<a href="/" style="display: contents;">
-				<img src={PokemonAPIIcon} alt="PokeAPI" />
+				<img src="{PokemonAPIIcon}" alt="PokeAPI" />
 			</a>
 			<div>
 				<a href="https://pokeapi.co">Documentation</a>

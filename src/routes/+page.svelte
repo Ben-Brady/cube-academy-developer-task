@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { SyncLoader } from 'svelte-loading-spinners';
-	import Metadata from '$lib/components/Metadata.svelte';
-	import PokemonTile from '$lib/components/PokemonTile.svelte';
-	import { listPokemon, allPokemon, type BasicPokemonInfo } from '$lib/pokemon/index.js';
-	import { onMount } from 'svelte';
+	import { SyncLoader } from "svelte-loading-spinners";
+	import Metadata from "$lib/components/Metadata.svelte";
+	import PokemonTile from "$lib/components/PokemonTile.svelte";
+	import { listPokemon, allPokemon, type BasicPokemonInfo } from "$lib/pokemon/index.js";
+	import { onMount } from "svelte";
 
 	let pokemons: BasicPokemonInfo[] = [];
 
@@ -30,8 +30,8 @@
 	{/each}
 </div>
 
-<div style="display: contents;" class:visible={!finished} id="loading-icon">
-	<SyncLoader color={'#000000'} />
+<div style="display: contents;" class:visible="{!finished}" id="loading-icon">
+	<SyncLoader color="{'#000000'}" />
 </div>
 
 <style>

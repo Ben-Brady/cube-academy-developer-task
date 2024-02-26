@@ -1,15 +1,15 @@
-import { z } from 'zod';
-import levenshtein from 'js-levenshtein';
+import { z } from "zod";
+import levenshtein from "js-levenshtein";
 
 export type BasicPokemonInfo = {
-	id: number;
-	name: string;
+    id: number;
+    name: string;
 };
 
 type Image = {
-	url: string;
-	width: number;
-	height: number;
+    url: string;
+    width: number;
+    height: number;
 };
 
 /**
@@ -19,47 +19,47 @@ type Image = {
  * @returns array of pokemon entries, empty if no pokemon remaining
  */
 export async function listPokemon(
-	limit: number | null,
-	offset: number = 0
+    limit: number | null,
+    offset: number = 0,
 ): Promise<BasicPokemonInfo[]> {
-	if (limit === null) limit = 100_000;
+    if (limit === null) limit = 100_000;
 
-	const PokemonSchema = z.object({
-		name: z.string(),
-		url: z.string()
-	});
-	const ResponseSchema = z.object({
-		results: z.array(PokemonSchema),
-		next: z.string().nullable()
-	});
+    const PokemonSchema = z.object({
+        name: z.string(),
+        url: z.string(),
+    });
+    const ResponseSchema = z.object({
+        results: z.array(PokemonSchema),
+        next: z.string().nullable(),
+    });
 
-	const r = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`);
-	const json = await r.json();
-	const data = ResponseSchema.parse(json);
+    const r = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`);
+    const json = await r.json();
+    const data = ResponseSchema.parse(json);
 
-	const results = data.results.map((entry) => {
-		const id = extractIdFromPokemonUrl(entry.url);
-		return { id, name: entry.name };
-	});
+    const results = data.results.map(entry => {
+        const id = extractIdFromPokemonUrl(entry.url);
+        return { id, name: entry.name };
+    });
 
-	return results;
+    return results;
 }
 
 export function createPokemonImage(id: number): Image {
-	return {
-		url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
-		width: 475,
-		height: 475
-	};
+    return {
+        url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+        width: 475,
+        height: 475,
+    };
 }
 function extractIdFromPokemonUrl(url: string): number {
-	const regex = /https:\/\/pokeapi.co\/api\/v2\/pokemon\/(\d+)/;
-	const matches = url.match(regex);
-	if (matches?.length !== 2) {
-		throw new Error(`Invalid URL: ${url}`);
-	}
+    const regex = /https:\/\/pokeapi.co\/api\/v2\/pokemon\/(\d+)/;
+    const matches = url.match(regex);
+    if (matches?.length !== 2) {
+        throw new Error(`Invalid URL: ${url}`);
+    }
 
-	return parseInt(matches[1]);
+    return parseInt(matches[1]);
 }
 
 /**
@@ -67,11 +67,11 @@ function extractIdFromPokemonUrl(url: string): number {
  * @returns Array of every pokemon's basic info
  */
 export async function allPokemon(): Promise<BasicPokemonInfo[]> {
-	if (allPokemonCache === null) {
-		allPokemonCache = await listPokemon(null);
-	}
+    if (allPokemonCache === null) {
+        allPokemonCache = await listPokemon(null);
+    }
 
-	return allPokemonCache;
+    return allPokemonCache;
 }
 // A basic cache is used to prevent repeated requests on name searches
 // Prehaps use a stored cache in localStorage if requests are too numerous
@@ -84,18 +84,18 @@ let allPokemonCache: BasicPokemonInfo[] | null = null;
  * @returns Array of basic pokemon info, empty if no matches
  */
 export async function searchPokemon(name: string, limit: number = 5): Promise<BasicPokemonInfo[]> {
-	if (name === '') return [];
-	const pokemons = await allPokemon();
-	if (pokemons === null) return [];
-	const DISTANCE_THRESHOLD = 10;
+    if (name === "") return [];
+    const pokemons = await allPokemon();
+    if (pokemons === null) return [];
+    const DISTANCE_THRESHOLD = 10;
 
-	return pokemons
-		.map((pokemon) => ({
-			pokemon,
-			distance: levenshtein(name, pokemon.name) // Distance between the search string and the pokemon name
-		})) // Match up pokemons, and their different from the search string
-		.filter((pokemon) => pokemon.distance <= DISTANCE_THRESHOLD) // Filter out pokemons that are too different
-		.sort((a, b) => a.distance - b.distance) // Sort by distance
-		.map((match) => match.pokemon) // Remove distances from the array
-		.slice(0, limit); // Slice to the limit
+    return pokemons
+        .map(pokemon => ({
+            pokemon,
+            distance: levenshtein(name, pokemon.name), // Distance between the search string and the pokemon name
+        })) // Match up pokemons, and their different from the search string
+        .filter(pokemon => pokemon.distance <= DISTANCE_THRESHOLD) // Filter out pokemons that are too different
+        .sort((a, b) => a.distance - b.distance) // Sort by distance
+        .map(match => match.pokemon) // Remove distances from the array
+        .slice(0, limit); // Slice to the limit
 }

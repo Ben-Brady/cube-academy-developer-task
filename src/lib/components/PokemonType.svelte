@@ -2,7 +2,7 @@
 	export let type: string;
 </script>
 
-<div data-type={type}>
+<div data-type="{type}">
 	{type}
 </div>
 
@@ -21,58 +21,58 @@
 		text-transform: capitalize;
 		user-select: none;
 
-		&[data-type='fire'] {
+		&[data-type="fire"] {
 			background-color: #f42;
 		}
-		&[data-type='water'] {
+		&[data-type="water"] {
 			background-color: #39f;
 		}
-		&[data-type='electric'] {
+		&[data-type="electric"] {
 			background-color: #fc3;
 		}
-		&[data-type='grass'] {
+		&[data-type="grass"] {
 			background-color: #7c5;
 		}
-		&[data-type='ice'] {
+		&[data-type="ice"] {
 			background-color: #6cf;
 		}
-		&[data-type='fighting'] {
+		&[data-type="fighting"] {
 			background-color: #b54;
 		}
-		&[data-type='poison'] {
+		&[data-type="poison"] {
 			background-color: #a59;
 		}
-		&[data-type='ground'] {
+		&[data-type="ground"] {
 			background-color: #db5;
 		}
-		&[data-type='flying'] {
+		&[data-type="flying"] {
 			background-color: #89f;
 		}
-		&[data-type='psychic'] {
+		&[data-type="psychic"] {
 			background-color: #f59;
 		}
-		&[data-type='bug'] {
+		&[data-type="bug"] {
 			background-color: #ab2;
 		}
-		&[data-type='rock'] {
+		&[data-type="rock"] {
 			background-color: #ba6;
 		}
-		&[data-type='ghost'] {
+		&[data-type="ghost"] {
 			background-color: #66b;
 		}
-		&[data-type='dragon'] {
+		&[data-type="dragon"] {
 			background-color: #76e;
 		}
-		&[data-type='dark'] {
+		&[data-type="dark"] {
 			background-color: #754;
 		}
-		&[data-type='steel'] {
+		&[data-type="steel"] {
 			background-color: #aab;
 		}
-		&[data-type='fairy'] {
+		&[data-type="fairy"] {
 			background-color: #e9e;
 		}
-		&[data-type='curse'] {
+		&[data-type="curse"] {
 			background-color: #698;
 		}
 	}
