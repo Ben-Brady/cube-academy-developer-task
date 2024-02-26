@@ -1,7 +1,7 @@
 <script>
 	import './styles.css';
 	import './reset.css';
-	import PokemonImg from '$lib/images/pokeapi.png';
+	import PokemonAPIIcon from '$lib/images/pokeapi.png';
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 
 	const queryClient = new QueryClient();
@@ -11,7 +11,7 @@
 	<div id="app">
 		<nav>
 			<a href="/" style="display: contents;">
-				<img src={PokemonImg} alt="PokeAPI" />
+				<img src={PokemonAPIIcon} alt="PokeAPI" />
 			</a>
 			<div>
 				<a href="https://pokeapi.co">Documentation</a>
