@@ -7,22 +7,50 @@
 	$: types = pokemon.types.map((pokemon_type) => pokemon_type.type.name);
 </script>
 
-<h1>
-	{pokemon.name}
-</h1>
-<img src={pokemon.sprites.front_default} alt="$query" />
-<span>Weight: {pokemon.weight / 10}Kg</span>
-<span>Height: {pokemon.height / 10}m</span>
-<span>Types:</span>
-<div class="types">
-	{#each types as type}
-		<PokemonType {type} />
-	{/each}
+<div id="layout">
+	<div class="pokemon">
+		<h1>
+			{pokemon.name}
+		</h1>
+		<img src={pokemon.sprites.front_default} alt="$query" />
+		<div class="types">
+			{#each types as type}
+				<PokemonType {type} />
+			{/each}
+		</div>
+	</div>
+	<div class="stats">
+		<span>Weight: {pokemon.weight / 10}Kg</span>
+		<span>Height: {pokemon.height / 10}m</span>
+	</div>
 </div>
 
-<style>
+<style lang="scss">
+	#layout {
+		display: flex;
+	}
+
+	.pokemon,
+	.stats {
+		display: flex;
+		align-items: center;
+		flex-flow: column;
+		padding: 1rem;
+	}
+	.stats {
+		justify-content: center;
+	}
+
 	h1 {
 		text-transform: capitalize;
+	}
+
+	img {
+		width: 24rem;
+		height: auto;
+
+		/* Icons are pixilated */
+		image-rendering: pixelated;
 	}
 
 	.types {

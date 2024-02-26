@@ -2,7 +2,7 @@
 	import { SyncLoader } from 'svelte-loading-spinners';
 	import Metadata from '$lib/components/Metadata.svelte';
 	import PokemonTile from '$lib/components/PokemonTile.svelte';
-	import { listPokemon, type BasicPokemonInfo } from '$lib/pokemon/index.js';
+	import { listPokemon, allPokemon, type BasicPokemonInfo } from '$lib/pokemon/index.js';
 	import { onMount } from 'svelte';
 
 	let pokemons: BasicPokemonInfo[] = [];
@@ -11,7 +11,8 @@
 
 	onMount(nextPage);
 	async function nextPage() {
-		const nextPage = await listPokemon(100, pokemons.length);
+		const nextPage = await allPokemon();
+		// const nextPage = await listPokemon(100, pokemons.length);
 		if (nextPage.length === 0) {
 			finished = true;
 			return;
@@ -39,7 +40,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
-		gap: 1rem;
+		gap: 2rem;
 	}
 
 	.visible {

@@ -8,6 +8,8 @@
 
 <style lang="scss">
 	div {
+		width: fit-content;
+
 		padding: 0.5rem;
 		border-radius: 0.5rem;
 		box-shadow: var(--shadow-elevation-low);
@@ -17,6 +19,7 @@
 		/* Colours taken from https://pokemondb.net/type */
 		background-color: #aa9;
 		text-transform: capitalize;
+		user-select: none;
 
 		&[data-type='fire'] {
 			background-color: #f42;

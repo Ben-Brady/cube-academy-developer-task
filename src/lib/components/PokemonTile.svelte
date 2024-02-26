@@ -5,7 +5,7 @@
 	const { name, id } = pokemon;
 	const image = createPokemonImage(id);
 
-	const paddedId = String(id).padStart(4, '0')
+	const paddedId = String(id).padStart(4, '0');
 </script>
 
 <a href="/pokemon/{name}" style="display: contents;">
@@ -18,7 +18,7 @@
 
 <style>
 	div {
-		width: 12rem;
+		width: 16rem;
 		height: auto;
 		border-radius: 1rem;
 
@@ -28,13 +28,15 @@
 		flex-flow: column;
 
 		padding: 1rem;
-		background-image: linear-gradient(125deg, var(--primary) 0%, var(--secondary) 100%);
+		background: var(--secondary);
 		box-shadow: var(--shadow-elevation-medium);
 	}
 
 	h1,
 	h2 {
+		width: 100%;
 		text-transform: capitalize;
+		text-align: center;
 	}
 
 	h1 {
