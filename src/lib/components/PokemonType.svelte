@@ -15,9 +15,8 @@
 		border: 0.1rem solid black;
 
 		/* Colours taken from https://pokemondb.net/type */
-		&[data-type='normal'] {
-			background-color: #aa9;
-		}
+		background-color: #aa9;
+
 		&[data-type='fire'] {
 			background-color: #f42;
 		}
