@@ -25,9 +25,11 @@
 
 <style lang="scss">
 	#app {
+		--NAVBAR-HEIGHT: 3.5rem;
+
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
+		max-height: 100vh;
 
 		nav {
 			display: flex;
@@ -36,7 +38,7 @@
 			gap: 1rem;
 
 			width: 100%;
-			height: 3.5rem;
+			height: var(--NAVBAR-HEIGHT);
 			padding: 0.25rem;
 			border: 0 solid black;
 			border-bottom-width: 1px;
@@ -56,6 +58,7 @@
 			align-items: center;
 			flex-flow: column;
 			padding: 1rem 10vw;
+			max-height: calc(100vh - var(--NAVBAR-HEIGHT));
 		}
 	}
 </style>
