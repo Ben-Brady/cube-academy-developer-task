@@ -9,43 +9,50 @@
 </script>
 
 <a href="/pokemon/{name}" style="display: contents;">
-	<div>
-		<h1>{name}</h1>
-		<h2>#{paddedId}</h2>
+	<div class="card">
+		<div class="header">
+			<h4>{name}</h4>
+			<h5>#{paddedId}</h5>
+		</div>
 		<img src="{image.url}" height="{image.height}" width="{image.width}" alt="{name}" />
 	</div>
 </a>
 
 <style>
-	div {
-		width: 16rem;
-		height: auto;
-		border-radius: 1rem;
-
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-flow: column;
-
-		padding: 1rem;
-		background: var(--secondary);
+	.card {
+		width: 15rem;
+		height: 20rem;
+		padding: 1.25rem;
+		background: linear-gradient(136deg, var(--secondary) 0%, var(--accent) 100%);
 		box-shadow: var(--shadow-elevation-medium);
+		border-radius: 2rem;
+
+		display: inline-flex;
+		gap: 10px;
+		align-items: center;
+		flex-direction: column;
 	}
 
-	h1,
-	h2 {
+	.header {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 5px;
+	}
+	h4,
+	h5 {
 		width: 100%;
 		text-transform: capitalize;
 		text-align: center;
-	}
-
-	h1 {
-		font-size: 1.4rem;
-	}
-
-	h2 {
-		font-size: 1rem;
 		line-break: anywhere;
+	}
+	h5 {
+		font-size: 120%;
+	}
+	h4 {
+		font-size: 110%;
 	}
 
 	img {
