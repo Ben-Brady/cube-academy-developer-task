@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { type Pokemon } from "$lib/pokemon";
-	import PokemonType from "$lib/components/PokemonType.svelte";
-	import PokemonStat from "$lib/components/PokemonPage/PokemonStat.svelte";
-	import FavouriteButton from "$lib/components/PokemonPage/FavouriteButton.svelte";
+	import { officialArtworkImageLink, type Pokemon } from "$lib/pokemon";
 	import { formatPokemonName, formatPokemonNumber } from "$lib/format";
-	export let pokemon: Pokemon;
+	import Stats from "./Stats.svelte";
+	import FavouriteButton from "./FavouriteButton.svelte";
 
-	$: types = pokemon.types.map(pokemon_type => pokemon_type.type.name);
-	const getStat = (name: string) =>
-		pokemon.stats.find(stat => stat.stat.name === name)?.base_stat ?? 0;
+	export let pokemon: Pokemon;
 </script>
 
 <div id="layout">
@@ -18,23 +14,9 @@
 			{formatPokemonNumber(pokemon.id)}
 			<FavouriteButton pokemonId="{pokemon.id}" />
 		</h1>
-		<img src="{pokemon.sprites.front_default}" alt="$query" />
-		<div class="types">
-			{#each types as type}
-				<PokemonType {type} />
-			{/each}
-		</div>
+		<img src="{officialArtworkImageLink(pokemon.id)}" alt="{pokemon.name}" />
 	</div>
-	<div class="stats">
-		<PokemonStat stat="Weight" value="{`${pokemon.weight / 10}kg`}" />
-		<PokemonStat stat="Height" value="{`${pokemon.height / 10}m`}" />
-		<PokemonStat stat="Health" value="{`${getStat('hp')}hp`}" />
-		<PokemonStat stat="Defense" value="{getStat('defense').toString()}" />
-		<PokemonStat stat="Attack" value="{getStat('attack').toString()}" />
-		<PokemonStat stat="Speed" value="{getStat('speed').toString()}" />
-		<PokemonStat stat="Special Attack" value="{getStat('special-attack').toString()}" />
-		<PokemonStat stat="Special Defence" value="{getStat('special-defense').toString()}" />
-	</div>
+	<Stats {pokemon} />
 </div>
 
 <style lang="scss">
@@ -42,21 +24,50 @@
 		display: flex;
 	}
 
-	.pokemon,
-	.stats {
+	.pokemon {
 		display: flex;
 		align-items: center;
 		flex-flow: column;
 		padding: 1rem;
 	}
 
-	.stats {
+	.info {
 		width: 30rem;
 		display: flex;
-		align-items: center;
 		justify-content: center;
-		flex-flow: row wrap;
-		padding: 1rem;
+
+		gap: 1rem;
+		.comparison {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.5rem;
+			span {
+				width: fit-content;
+			}
+
+			img {
+				height: 2rem;
+				width: 2rem;
+			}
+		}
+		.stats {
+			border: 0.1rem solid black;
+			border-radius: 2rem;
+
+			width: fit-content;
+			height: fit-content;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: row wrap;
+			padding: 0rem;
+		}
+		.types {
+			display: flex;
+			flex-flow: row wrap;
+			gap: 0.5rem;
+		}
 	}
 
 	h1 {
@@ -66,14 +77,5 @@
 	img {
 		width: 24rem;
 		height: auto;
-
-		/* Icons are pixilated */
-		image-rendering: pixelated;
-	}
-
-	.types {
-		display: flex;
-		flex-flow: row wrap;
-		gap: 0.5rem;
 	}
 </style>
