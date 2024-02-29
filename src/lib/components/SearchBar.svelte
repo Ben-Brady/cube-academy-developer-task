@@ -112,6 +112,21 @@
 					height: 2rem;
 					padding: 0 0.5rem;
 
+					transition: background 0.2s;
+					&:hover {
+						background: var(--secondary);
+					}
+
+					/* First and last should have curved edges to match container */
+					&:first-child {
+						border-top-left-radius: 0.5rem;
+						border-top-right-radius: 0.5rem;
+					}
+
+					&:last-child {
+						border-bottom-left-radius: 0.5rem;
+						border-bottom-right-radius: 0.5rem;
+					}
 
 					img {
 						width: 2rem;
