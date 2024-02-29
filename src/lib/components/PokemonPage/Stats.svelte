@@ -32,9 +32,11 @@
 
 	$: (async () => {
 		if (!browser) return;
-		if (comparedToId === null) return;
-		const pokemon = await getPokemon(comparedToId);
-		comparedTo = pokemon;
+		if (comparedToId === null) {
+			comparedTo = null;
+		} else {
+			comparedTo = await getPokemon(comparedToId);
+		}
 	})();
 </script>
 
@@ -50,11 +52,22 @@
 		{/if}
 	</div>
 
-	<SearchBar
-		on:click="{ev => {
-			comparedToId = ev.detail.id;
-		}}"
-	/>
+	<div class="search">
+		<SearchBar
+			on:click="{ev => {
+				comparedToId = ev.detail.id;
+			}}"
+		/>
+		<button
+			disabled="{comparedTo === null}"
+			on:click="{() => {
+				comparedToId = null;
+			}}"
+		>
+			Clear
+		</button>
+	</div>
+
 	<div class="stats">
 		<NumericPokemonStat
 			stat="Weight"
@@ -113,13 +126,26 @@
 		justify-content: center;
 		align-items: center;
 		gap: 0.5rem;
+
 		span {
 			width: fit-content;
 		}
 
 		img {
-			height: 2rem;
-			width: 2rem;
+			height: 1.5rem;
+			width: 1.5rem;
+		}
+	}
+	.search {
+		display: flex;
+		flex-flow: row;
+		gap: 1rem;
+		width: 100%;
+
+		button {
+			border: 0.1rem solid var(--text);
+			border-radius: 1rem;
+			padding: 0.25rem 0.5rem;
 		}
 	}
 
