@@ -27,7 +27,7 @@ export const PokemonSchema = z.object({
     past_types: z.lazy(() => PokemonTypePast.array()),
     cries: z.object({
         latest: z.string(),
-        legacy: z.string(),
+        legacy: z.string().optional(),
     }),
     sprites: z.object({
         front_default: z.string().nullable(),
