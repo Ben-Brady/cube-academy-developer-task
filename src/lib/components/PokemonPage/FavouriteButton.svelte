@@ -42,7 +42,7 @@
 		cursor: pointer;
 
 		img {
-			height: 1.5rem;
+			height: 2rem;
 			width: auto;
 		}
 	}
