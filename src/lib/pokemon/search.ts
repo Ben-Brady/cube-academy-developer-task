@@ -89,10 +89,17 @@ export async function searchPokemon(name: string, limit: number = 5): Promise<Ba
     if (pokemons === null) return [];
     const DISTANCE_THRESHOLD = 10;
 
+    function distance(comparison: string): number {
+        let score = 0;
+        if (comparison.startsWith(name)) score -= 100;
+        else if (comparison.includes(name)) score -= 10;
+        score += levenshtein(name, comparison);
+        return score;
+    }
     return pokemons
         .map(pokemon => ({
             pokemon,
-            distance: levenshtein(name, pokemon.name), // Distance between the search string and the pokemon name
+            distance: distance(pokemon.name), // Distance between the search string and the pokemon name
         })) // Match up pokemons, and their different from the search string
         .filter(pokemon => pokemon.distance <= DISTANCE_THRESHOLD) // Filter out pokemons that are too different
         .sort((a, b) => a.distance - b.distance) // Sort by distance
