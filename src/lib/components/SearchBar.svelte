@@ -108,6 +108,7 @@
 
 		.results-container {
 			position: absolute;
+			z-index: 1;
 			margin-top: 3rem;
 
 			.results {
