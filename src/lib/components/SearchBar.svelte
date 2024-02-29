@@ -1,7 +1,10 @@
 <script lang="ts">
 	import SearchIcon from "$lib/images/search.svg";
-	import { searchPokemon, type BasicPokemonInfo } from "$lib/pokemon";
+	import { searchPokemon, createPokemonImage, type BasicPokemonInfo } from "$lib/pokemon";
 	import { formatPokemonName, formatPokemonNumber } from "$lib/format";
+	import { createEventDispatcher } from "svelte";
+	const dispatch = createEventDispatcher();
+
 	let search = "";
 
 	let autocomplete: BasicPokemonInfo[] = [];
@@ -23,7 +26,9 @@
 			isSearchFocused = true;
 		}}"
 		on:focusout="{() => {
-			isSearchFocused = false;
+			setTimeout(() => {
+				isSearchFocused = false;
+			}, 300);
 		}}"
 	/>
 	<div class="search-button">
@@ -39,7 +44,13 @@
 	<div class="results-container" class:hidden="{!showAutocompleted}">
 		<div class="results" style="width: {searchBoxWidth}px;">
 			{#each autocomplete as pokemon}
-				<a class="row" href="/pokemon/{pokemon.name}">
+				<div
+					class="row"
+					on:click="{() => {
+						search = '';
+						dispatch('click', pokemon);
+					}}"
+				>
 					<img
 						src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon.id}.png"
 						alt="{pokemon.name}"
@@ -48,7 +59,7 @@
 						{formatPokemonName(pokemon.name)}
 						{formatPokemonNumber(pokemon.id)}
 					</span>
-				</a>
+				</div>
 			{/each}
 		</div>
 	</div>
@@ -107,6 +118,8 @@
 				background: var(--accent);
 
 				.row {
+					cursor: pointer;
+
 					display: flex;
 					gap: 1rem;
 					height: 2rem;

@@ -1,8 +1,18 @@
-<script>
+<script lang="ts">
+	import type { Pokemon } from "$lib/pokemon";
 	import PokemonAPIIcon from "$lib/images/pokeapi.png";
 	import StarIcon from "$lib/images/star-filled.svg";
 	import FileIcon from "$lib/images/file.svg";
 	import SearchBar from "./SearchBar.svelte";
+	import { goto } from "$app/navigation";
+
+	function handleSearch(e: CustomEvent<Pokemon>) {
+		// Using browser navigation instead of svelte routing
+		// Svelte doesn't handle /pokemon/[name] correctly
+		// Currently this causes a full page reload
+		// TODO: Investigate why not, this works for now
+		window.location.href = `/pokemon/${e.detail.name}`;
+	}
 </script>
 
 <nav>
@@ -15,7 +25,7 @@
 		</a>
 	</div>
 
-	<SearchBar />
+	<SearchBar on:click="{handleSearch}" />
 
 	<div class="right">
 		<a href="/favourites" class="link">
