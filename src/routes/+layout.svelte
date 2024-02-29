@@ -13,7 +13,7 @@
 
 <QueryClientProvider client="{queryClient}">
 	<div id="app">
-		<NavigationBar/>
+		<NavigationBar />
 		<main>
 			<slot />
 		</main>
@@ -33,7 +33,7 @@
 			align-items: center;
 			flex-flow: column;
 			padding: 1rem 10vw;
-			max-height: calc(100vh - var(--NAVBAR-HEIGHT));
+			height: calc(100vh - var(--NAVBAR-HEIGHT));
 		}
 	}
 </style>
