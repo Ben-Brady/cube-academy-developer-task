@@ -28,9 +28,9 @@
 	<div class="center">
 		<SyncLoader color="var(--text)" />
 	</div>
-	{:else}
+{:else}
 	{goto("/", { replaceState: true })}
-	{/if}
+{/if}
 
 <style>
 	.center {

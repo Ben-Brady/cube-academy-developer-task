@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createPokemonImage, type BasicPokemonInfo } from "$lib/pokemon";
-	import { formatPokemonName, formatPokemonNumber } from "$lib/format"
+	import { formatPokemonName, formatPokemonNumber } from "$lib/format";
 	export let pokemon: BasicPokemonInfo;
 
 	const image = createPokemonImage(pokemon.id);

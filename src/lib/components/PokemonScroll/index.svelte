@@ -18,7 +18,7 @@
 		}
 	}
 
-	let interval: any;
+	let interval: NodeJS.Timeout;
 	onMount(() => {
 		interval = setInterval(checkReachedBottom, 300);
 	});

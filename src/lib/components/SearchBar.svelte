@@ -1,6 +1,6 @@
 <script lang="ts">
 	import SearchIcon from "$lib/images/search.svg";
-	import { searchPokemon, createPokemonImage, type BasicPokemonInfo } from "$lib/pokemon";
+	import { searchPokemon, type BasicPokemonInfo } from "$lib/pokemon";
 	import { formatPokemonName, formatPokemonNumber } from "$lib/format";
 	import { createEventDispatcher } from "svelte";
 	const dispatch = createEventDispatcher();

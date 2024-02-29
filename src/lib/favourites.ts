@@ -33,8 +33,7 @@ export function isFavourited(id: number) {
 
 export async function getFavourites(): Promise<BasicPokemonInfo[]> {
     const pokemon = await allPokemon();
-    const favorute_ids = retriveFavourites()
-        .sort((a, b) => a - b); // Sort the ids to ensure consistent ordering
+    const favorute_ids = retriveFavourites().sort((a, b) => a - b); // Sort the ids to ensure consistent ordering
 
     const pokemon_id_map = Object.fromEntries(pokemon.map(e => [e.id.toString(), e]));
     return favorute_ids.map(id => pokemon_id_map[id.toString()]);

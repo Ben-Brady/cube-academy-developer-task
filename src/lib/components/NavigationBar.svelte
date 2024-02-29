@@ -4,7 +4,6 @@
 	import StarIcon from "$lib/images/star-filled.svg";
 	import FileIcon from "$lib/images/file.svg";
 	import SearchBar from "./SearchBar.svelte";
-	import { goto } from "$app/navigation";
 
 	function handleSearch(e: CustomEvent<Pokemon>) {
 		// Using browser navigation instead of svelte routing

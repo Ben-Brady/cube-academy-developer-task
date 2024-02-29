@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { SyncLoader } from "svelte-loading-spinners";
 	import Metadata from "$lib/components/Metadata.svelte";
 	import PokemonScroll from "$lib/components/PokemonScroll/index.svelte";
-	import { listPokemon, allPokemon, type BasicPokemonInfo } from "$lib/pokemon";
+	import { listPokemon, type BasicPokemonInfo } from "$lib/pokemon";
 	import { onMount } from "svelte";
 
 	let pokemons: BasicPokemonInfo[] = [];

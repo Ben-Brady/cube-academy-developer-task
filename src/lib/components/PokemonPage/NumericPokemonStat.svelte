@@ -10,7 +10,7 @@
 		value: number;
 		difference: number;
 	};
-	function getComparedToInfo(comparedTo: number|null): CompareToInfo | null {
+	function getComparedToInfo(comparedTo: number | null): CompareToInfo | null {
 		if (comparedTo === null) {
 			return null;
 		}
@@ -33,8 +33,8 @@
 			neutral: "~",
 			positive: "+",
 			negative: "-",
-		}[inference]
-		return  {
+		}[inference];
+		return {
 			inference,
 			modifier,
 			value: comparedTo,
@@ -42,7 +42,7 @@
 		};
 	}
 
-	$: comparedToInfo = getComparedToInfo(comparedTo)
+	$: comparedToInfo = getComparedToInfo(comparedTo);
 </script>
 
 <div class="block">

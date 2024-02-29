@@ -5,4 +5,5 @@ export const capatalise = (text: string) =>
         .join(" ");
 
 export const formatPokemonName = (name: string) => capatalise(name.replace("-", " "));
-export const formatPokemonNumber = (number: number | string) => `#${number.toString().padStart(4, "0")}`;
+export const formatPokemonNumber = (number: number | string) =>
+    `#${number.toString().padStart(4, "0")}`;
