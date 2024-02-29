@@ -3,6 +3,7 @@
 	import PokemonType from "$lib/components/PokemonType.svelte";
 	import PokemonStat from "$lib/components/PokemonPage/PokemonStat.svelte";
 	import FavouriteButton from "$lib/components/PokemonPage/FavouriteButton.svelte";
+	import { formatPokemonName, formatPokemonNumber } from "$lib/format";
 	export let pokemon: Pokemon;
 
 	$: types = pokemon.types.map(pokemon_type => pokemon_type.type.name);
@@ -13,7 +14,8 @@
 <div id="layout">
 	<div class="pokemon">
 		<h1>
-			{pokemon.name}
+			{formatPokemonName(pokemon.name)}
+			{formatPokemonNumber(pokemon.id)}
 			<FavouriteButton pokemonId="{pokemon.id}" />
 		</h1>
 		<img src="{pokemon.sprites.front_default}" alt="$query" />

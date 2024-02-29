@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SearchIcon from "$lib/images/search.svg";
 	import { searchPokemon, type BasicPokemonInfo } from "$lib/pokemon";
+	import { formatPokemonName, formatPokemonNumber } from "$lib/format";
 	let search = "";
 
 	let autocomplete: BasicPokemonInfo[] = [];
@@ -21,7 +22,7 @@
 		on:focus="{() => {
 			isSearchFocused = true;
 		}}"
-		on:blur="{() => {
+		on:focusout="{() => {
 			isSearchFocused = false;
 		}}"
 	/>
@@ -35,7 +36,7 @@
 		/>
 	</div>
 
-	<div class="results-container" hidden="{!showAutocompleted}">
+	<div class="results-container" class:hidden="{!showAutocompleted}">
 		<div class="results" style="width: {searchBoxWidth}px;">
 			{#each autocomplete as pokemon}
 				<a class="row" href="/pokemon/{pokemon.name}">
@@ -43,7 +44,10 @@
 						src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon.id}.png"
 						alt="{pokemon.name}"
 					/>
-					<span> {pokemon.name} #{pokemon.id} </span>
+					<span>
+						{formatPokemonName(pokemon.name)}
+						{formatPokemonNumber(pokemon.id)}
+					</span>
 				</a>
 			{/each}
 		</div>
@@ -51,6 +55,10 @@
 </div>
 
 <style lang="scss">
+	.hidden {
+		display: none;
+	}
+
 	.search {
 		display: grid;
 		grid-template-columns: 1fr 3rem;
@@ -104,8 +112,10 @@
 					height: 2rem;
 					padding: 0 0.5rem;
 
+
 					img {
-						height: 100%;
+						width: 2rem;
+						height: 2rem;
 					}
 				}
 			}
