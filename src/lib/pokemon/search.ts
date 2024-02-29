@@ -87,7 +87,7 @@ export async function searchPokemon(name: string, limit: number = 5): Promise<Ba
     if (name === "") return [];
     const pokemons = await allPokemon();
     if (pokemons === null) return [];
-    const DISTANCE_THRESHOLD = 10;
+    const DISTANCE_THRESHOLD = 3;
 
     function distance(comparison: string): number {
         let score = 0;
