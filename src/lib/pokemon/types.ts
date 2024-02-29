@@ -10,7 +10,7 @@ export const NamedResourceSchema = z.object({
 export const PokemonSchema = z.object({
     id: z.number(),
     name: z.string(),
-    base_experience: z.number(),
+    base_experience: z.number().nullable(),
     height: z.number(),
     is_default: z.boolean(),
     order: z.number(),
@@ -27,7 +27,7 @@ export const PokemonSchema = z.object({
     past_types: z.lazy(() => PokemonTypePast.array()),
     cries: z.object({
         latest: z.string(),
-        legacy: z.string().optional(),
+        legacy: z.string().nullable(),
     }),
     sprites: z.object({
         front_default: z.string().nullable(),
