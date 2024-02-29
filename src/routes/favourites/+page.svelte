@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { onMount } from "svelte";
 	import Metadata from "$lib/components/Metadata.svelte";
-	import PokemonTile from "$lib/components/PokemonTile.svelte";
+	import PokemonScroll from "$lib/components/PokemonScroll/index.svelte";
 	import { getFavourites } from "$lib/favourites";
 	import type { BasicPokemonInfo } from "$lib/pokemon";
-  import { onMount } from "svelte";
 
 	let favourites: BasicPokemonInfo[] = [];
 	onMount(async () => {
@@ -12,19 +12,5 @@
 </script>
 
 <Metadata title="Home" description="Pokémon API" />
+<PokemonScroll pokemons={favourites}/>
 
-<div id="scroll">
-	{#each favourites as pokemon}
-		<PokemonTile {pokemon} />
-	{/each}
-</div>
-
-<style>
-	#scroll {
-		height: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 2rem;
-	}
-</style>
