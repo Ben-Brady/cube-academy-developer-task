@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { SyncLoader } from "svelte-loading-spinners";
 	import { type Pokemon } from "$lib/pokemon";
 	import PokemonType from "$lib/components/PokemonType.svelte";
 	import PokemonStat from "$lib/components/PokemonPage/PokemonStat.svelte";
@@ -15,8 +14,8 @@
 	<div class="pokemon">
 		<h1>
 			{pokemon.name}
+			<FavouriteButton pokemonId="{pokemon.id}" />
 		</h1>
-		<FavouriteButton pokemonId="{pokemon.id}" />
 		<img src="{pokemon.sprites.front_default}" alt="$query" />
 		<div class="types">
 			{#each types as type}
@@ -33,9 +32,6 @@
 		<PokemonStat stat="Speed" value="{getStat('speed').toString()}" />
 		<PokemonStat stat="Special Attack" value="{getStat('special-attack').toString()}" />
 		<PokemonStat stat="Special Defence" value="{getStat('special-defense').toString()}" />
-		<!-- {#each pokemon.stats as stat}
-			<PokemonStat stat="{stat.stat.name}" value="{stat.base_stat}" />
-		{/each} -->
 	</div>
 </div>
 
