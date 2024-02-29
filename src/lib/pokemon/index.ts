@@ -1,7 +1,12 @@
 export { allPokemon, searchPokemon, listPokemon, createPokemonImage } from "./search";
 export { getPokemon } from "./get";
 export { getEvolutionChain, type EvolutionChain } from "./evolution";
-
+export {
+    dreamWorldImageLink,
+    homeImageLink,
+    officialArtworkImageLink,
+    showdownImageLink,
+} from "./images";
 export type { BasicPokemonInfo } from "./search";
 export type * from "./types";
 
