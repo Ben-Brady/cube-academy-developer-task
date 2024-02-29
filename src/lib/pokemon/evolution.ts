@@ -1,11 +1,16 @@
 import { NamedResourceSchema } from "./types";
 import { z } from "zod";
 
-export async function getEvolutionChain(id: number) {
+export async function getEvolutionChain(id: number): Promise<EvolutionChain> {
+    const Schema = z.object({
+        id: z.number(),
+        chain: EvolutionChainSchema,
+        baby_trigger_item: NamedResourceSchema,
+    });
     const r = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${id}`);
     const json = await r.json();
-    const data = EvolutionChainSchema.parse(json);
-    return data;
+    const data = Schema.parse(json);
+    return data.chain;
 }
 
 // We have to use a base, in order to do a recursive schema.
