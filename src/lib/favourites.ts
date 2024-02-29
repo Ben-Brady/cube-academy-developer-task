@@ -1,11 +1,13 @@
 import { allPokemon, type BasicPokemonInfo } from "./pokemon"
-import { object, z } from "zod";
+import { z } from "zod";
 
 const LOCAL_STORAGE_KEY = "favourites";
+const Schema = z.number().array();
 
 function retriveFavourites(): number[] {
     const json = localStorage.getItem(LOCAL_STORAGE_KEY) ?? "[]";
-    const favorute_ids = z.array(z.number()).parse(json);
+    const data = JSON.parse(json);
+    const favorute_ids = Schema.parse(data);
     return favorute_ids;
 }
 
@@ -22,6 +24,11 @@ export function removeFavourite(id: number) {
     if (!favorute_ids.includes(id)) return
     favorute_ids = favorute_ids.filter((i) => i !== id);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favorute_ids));
+}
+
+export function isFavourited(id: number) {
+    const favorute_ids = retriveFavourites();
+    return favorute_ids.includes(id);
 }
 
 export async function getFavourites(): Promise<BasicPokemonInfo[]> {
