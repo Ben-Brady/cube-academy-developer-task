@@ -7,6 +7,8 @@
 	export let pokemon: Pokemon;
 
 	$: types = pokemon.types.map(pokemon_type => pokemon_type.type.name);
+	const getStat = (name: string) =>
+		pokemon.stats.find(stat => stat.stat.name === name)?.base_stat ?? 0;
 </script>
 
 <div id="layout">
@@ -14,7 +16,7 @@
 		<h1>
 			{pokemon.name}
 		</h1>
-		<FavouriteButton pokemonId={pokemon.id}/>
+		<FavouriteButton pokemonId="{pokemon.id}" />
 		<img src="{pokemon.sprites.front_default}" alt="$query" />
 		<div class="types">
 			{#each types as type}
@@ -25,6 +27,15 @@
 	<div class="stats">
 		<PokemonStat stat="Weight" value="{`${pokemon.weight / 10}kg`}" />
 		<PokemonStat stat="Height" value="{`${pokemon.height / 10}m`}" />
+		<PokemonStat stat="Health" value="{`${getStat('hp')}hp`}" />
+		<PokemonStat stat="Defense" value="{getStat('defense').toString()}" />
+		<PokemonStat stat="Attack" value="{getStat('attack').toString()}" />
+		<PokemonStat stat="Speed" value="{getStat('speed').toString()}" />
+		<PokemonStat stat="Special Attack" value="{getStat('special-attack').toString()}" />
+		<PokemonStat stat="Special Defence" value="{getStat('special-defense').toString()}" />
+		<!-- {#each pokemon.stats as stat}
+			<PokemonStat stat="{stat.stat.name}" value="{stat.base_stat}" />
+		{/each} -->
 	</div>
 </div>
 
@@ -42,6 +53,7 @@
 	}
 
 	.stats {
+		width: 30rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
