@@ -41,18 +41,13 @@
 		align-items: center;
 		gap: 5px;
 	}
+
 	h4,
 	h5 {
 		width: 100%;
 		text-transform: capitalize;
 		text-align: center;
 		line-break: anywhere;
-	}
-	h5 {
-		font-size: 120%;
-	}
-	h4 {
-		font-size: 110%;
 	}
 
 	img {
