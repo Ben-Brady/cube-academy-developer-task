@@ -48,13 +48,13 @@
 		gap: 1rem;
 		height: 100%;
 		width: 30rem;
+	}
 
-		&.left {
-			justify-content: flex-start;
-		}
-		&.right {
-			justify-content: flex-end;
-		}
+	.left {
+		justify-content: flex-start;
+	}
+	.right {
+		justify-content: flex-end;
 	}
 
 	.link {
