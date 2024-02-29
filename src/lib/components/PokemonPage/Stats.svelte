@@ -98,7 +98,7 @@
 			comparedTo="{getComparedStat(comparedTo, 'attack')}"
 		/>
 		<NumericPokemonStat
-			stat="speed"
+			stat="Speed"
 			value="{getStat(pokemon, 'speed')}"
 			comparedTo="{getComparedStat(comparedTo, 'speed')}"
 		/>
