@@ -1,9 +1,11 @@
 # Cube Academy Developer Task
 
-Started: 18/02/2024
 
-[https://www.figma.com/file/oawjRK4Aqrss3BgYONNRQT/Pokemon-App?type=design&node-id=0%3A1&mode=design&t=5UOCvHHslYZdA5Fi-1](https://www.figma.com/file/oawjRK4Aqrss3BgYONNRQT/Pokemon-App?type=design&node-id=0%3A1&mode=design&t=5UOCvHHslYZdA5Fi-1)
+![image](https://github.com/Ben-Brady/cube-academy-developer-task/assets/64110708/b770bfdd-e34e-43bd-bd36-22fb221edd22)
 
+Started on 18/02/2024
+
+Design Sheet: [https://www.figma.com/file/oawjRK4Aqrss3BgYONNRQT/Pokemon-App?type=design&node-id=0%3A1&mode=design&t=5UOCvHHslYZdA5Fi-1](https://www.figma.com/file/oawjRK4Aqrss3BgYONNRQT/Pokemon-App?type=design&node-id=0%3A1&mode=design&t=5UOCvHHslYZdA5Fi-1)
 ## Getting Started Guide
 
 In order to run the project, ensure you have node and git installed on your system. Then run the following commands
